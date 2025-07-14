@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import CartPage from './components/CartPage.jsx'
 import LoginPage from './components/LoginPage.jsx'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { Routes, Route, useNavigate, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 
 function App() {
@@ -41,20 +41,18 @@ function App() {
 
   return (
     <>
-      <BrowserRouter basename="/e-commerce">
-        <Navbar cartItems={cartItems} onCartClick={handleCartClick} />
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <ProductList onAddToCart={handleAddCart} />
-            </>
-          } />
-          <Route path="/cart" element={isAuthenticated ? <CartPage items={cartItems} onRemove={handleRemoveCartItem} /> : <LoginPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <Navbar cartItems={cartItems} onCartClick={handleCartClick} />
+      <Routes>
+        <Route path="/" element={
+          <>
+            <Hero />
+            <ProductList onAddToCart={handleAddCart} />
+          </>
+        } />
+        <Route path="/cart" element={isAuthenticated ? <CartPage items={cartItems} onRemove={handleRemoveCartItem} /> : <LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+      <Footer />
     </>
   )
 
